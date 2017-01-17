@@ -11,6 +11,10 @@ import javax.swing.JPanel;
 import com.ELSE.presenter.Presenter;
 
 class SliderPage implements CentralProperties {
+	static SliderPage newInstance() {
+		return new SliderPage();
+	}
+
 	private JPanel parent;
 	private JPanel up;
 	private JPanel down;
@@ -20,14 +24,32 @@ class SliderPage implements CentralProperties {
 		parent = CentralPage.newInstance(this);
 	}
 
-	static SliderPage newInstance() {
-		return new SliderPage();
+	public void enableBackButton(boolean b) {
+		System.out.println(b ? "ENABLED" : "DISABLED");
+		back.setEnabled(b);
+		back.setIcon(new ImageIcon(new ImageIcon(SliderPage.class.getResource(b ? "/back.png" : "/back_gray.png")).getImage().getScaledInstance(32, 32, Image.SCALE_DEFAULT)));
+		down.revalidate();
+		down.repaint();
+	}
+
+	public void enableNextButton(boolean b) {
+		System.out.println(b ? "ENABLED" : "DISABLED");
+		forward.setEnabled(b);
+		forward.setIcon(new ImageIcon(new ImageIcon(SliderPage.class.getResource(b ? "/forward.png" : "/forward_gray.png")).getImage().getScaledInstance(32, 32, Image.SCALE_DEFAULT)));
+		down.revalidate();
+		down.repaint();
 	}
 
 	@Override
-	public JPanel initUp(JPanel container) {
-		up = CentralSizePanel.newInstance(container);
-		up.setLayout(new FlowLayout());
+	public JPanel getContainerPanel() {
+		return parent;
+	}
+
+	JPanel getDown() {
+		return down;
+	}
+
+	JPanel getUp() {
 		return up;
 	}
 
@@ -52,16 +74,10 @@ class SliderPage implements CentralProperties {
 	}
 
 	@Override
-	public JPanel getContainerPanel() {
-		return parent;
-	}
-
-	JPanel getUp() {
+	public JPanel initUp(JPanel container) {
+		up = CentralSizePanel.newInstance(container);
+		up.setLayout(new FlowLayout());
 		return up;
-	}
-
-	JPanel getDown() {
-		return down;
 	}
 
 	public void setPresenter(Presenter presenter) {
@@ -69,21 +85,5 @@ class SliderPage implements CentralProperties {
 		grid.addActionListener(presenter.getCenterPresenter().gridView());
 		list.addActionListener(presenter.getCenterPresenter().listView());
 		forward.addActionListener(presenter.getCenterPresenter().forwardBooks());
-	}
-
-	public void enableBackButton(boolean b) {
-		System.out.println(b ? "ENABLED" : "DISABLED");
-		back.setEnabled(b);
-		back.setIcon(new ImageIcon(new ImageIcon(SliderPage.class.getResource(b ? "/back.png" : "/back_gray.png")).getImage().getScaledInstance(32, 32, Image.SCALE_DEFAULT)));
-		down.revalidate();
-		down.repaint();
-	}
-
-	public void enableNextButton(boolean b) {
-		System.out.println(b ? "ENABLED" : "DISABLED");
-		forward.setEnabled(b);
-		forward.setIcon(new ImageIcon(new ImageIcon(SliderPage.class.getResource(b ? "/forward.png" : "/forward_gray.png")).getImage().getScaledInstance(32, 32, Image.SCALE_DEFAULT)));
-		down.revalidate();
-		down.repaint();
 	}
 }

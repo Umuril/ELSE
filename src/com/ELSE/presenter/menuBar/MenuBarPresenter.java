@@ -19,15 +19,15 @@ public class MenuBarPresenter {
 		this.presenter = presenter;
 	}
 
-	public ActionListener settings() {
-		return new SettingsListener();
+	public ActionListener advSearch() {
+		return new AdvanceSearchListener(presenter.getCenterPresenter(), model, view);
 	}
 
 	public ActionListener search(JTextField testo) {
 		return new SearchListener(model, presenter.getCenterPresenter(), testo);
 	}
 
-	public ActionListener advSearch() {
-		return new AdvanceSearchListener(presenter.getCenterPresenter(), model, view);
+	public ActionListener settings() {
+		return new SettingsListener();
 	}
 }

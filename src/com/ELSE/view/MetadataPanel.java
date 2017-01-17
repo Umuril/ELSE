@@ -17,36 +17,20 @@ import com.ELSE.model.BookMetadata;
 import com.ELSE.presenter.Presenter;
 
 class MetadataPanel {
+	static MetadataPanel newInstance(JPanel parent) {
+		return new MetadataPanel(parent);
+	}
+
 	private JPanel parent;
 	private JLabel bookPreview;
 	private JTextField titolo, autore, anno, pagine;
 	private JButton openDefault, openCustom;
 	private BookMetadata book;
 
-	JTextField getTitolo() {
-		return titolo;
-	}
-
-	JTextField getAutore() {
-		return autore;
-	}
-
-	JTextField getAnno() {
-		return anno;
-	}
-
-	JTextField getPagine() {
-		return pagine;
-	}
-
 	private MetadataPanel(JPanel parent) {
 		this.parent = parent;
 		// I don't like it but seems to work
 		bookPreview = new JLabel();
-	}
-
-	static MetadataPanel newInstance(JPanel parent) {
-		return new MetadataPanel(parent);
 	}
 
 	void change(Image image, BookMetadata book, boolean editable) {
@@ -120,6 +104,22 @@ class MetadataPanel {
 		parent.add(parentpanel, BorderLayout.NORTH);
 		parent.revalidate();
 		parent.repaint();
+	}
+
+	JTextField getAnno() {
+		return anno;
+	}
+
+	JTextField getAutore() {
+		return autore;
+	}
+
+	JTextField getPagine() {
+		return pagine;
+	}
+
+	JTextField getTitolo() {
+		return titolo;
 	}
 
 	void setPresenter(Presenter presenter) {

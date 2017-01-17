@@ -13,6 +13,10 @@ import com.ELSE.model.BookMetadata;
 import com.ELSE.presenter.Presenter;
 
 class BookDetailsPage implements CentralProperties {
+	static BookDetailsPage newInstance() {
+		return new BookDetailsPage();
+	}
+
 	private JPanel parent;
 	private JPanel up, down;
 	private MetadataPanel metadataPanel;
@@ -27,16 +31,20 @@ class BookDetailsPage implements CentralProperties {
 		editable = false; // this vs field intanced
 	}
 
-	static BookDetailsPage newInstance() {
-		return new BookDetailsPage();
+	@Override
+	public JPanel getContainerPanel() {
+		return parent;
 	}
 
-	@Override
-	public JPanel initUp(JPanel container) {
-		up = CentralSizePanel.newInstance(container);
-		up.setLayout(new BorderLayout());
-		up.setBackground(Color.white);
-		metadataPanel = MetadataPanel.newInstance(up);
+	JPanel getDown() {
+		return down;
+	}
+
+	public MetadataPanel getMetadataPanel() {
+		return metadataPanel;
+	}
+
+	JPanel getUp() {
 		return up;
 	}
 
@@ -57,28 +65,21 @@ class BookDetailsPage implements CentralProperties {
 		return down;
 	}
 
-	void updateUpWith(Image image, BookMetadata book) {
-		this.image = image;
-		this.book = book;
-		metadataPanel.change(image, book, editable);
-		// Needs further checks
-		metadataPanel.setPresenter(presenter);
-		for (ActionListener al : save.getActionListeners())
-			save.removeActionListener(al);
-		save.addActionListener(presenter.getCenterPresenter().saveBookDetailPageChanges(book));
-	}
-
 	@Override
-	public JPanel getContainerPanel() {
-		return parent;
-	}
-
-	JPanel getUp() {
+	public JPanel initUp(JPanel container) {
+		up = CentralSizePanel.newInstance(container);
+		up.setLayout(new BorderLayout());
+		up.setBackground(Color.white);
+		metadataPanel = MetadataPanel.newInstance(up);
 		return up;
 	}
 
-	JPanel getDown() {
-		return down;
+	public boolean isEditable() {
+		return editable;
+	}
+
+	public void setEditable(boolean editable) {
+		this.editable = editable;
 	}
 
 	void setPresenter(Presenter presenter) {
@@ -88,20 +89,19 @@ class BookDetailsPage implements CentralProperties {
 		// metadataPanel.setPresenter(presenter);
 	}
 
-	public void setEditable(boolean editable) {
-		this.editable = editable;
-	}
-
-	public boolean isEditable() {
-		return editable;
-	}
-
 	public void update() {
 		if (image != null && book != null)
 			metadataPanel.change(image, book, editable);
 	}
 
-	public MetadataPanel getMetadataPanel() {
-		return metadataPanel;
+	void updateUpWith(Image image, BookMetadata book) {
+		this.image = image;
+		this.book = book;
+		metadataPanel.change(image, book, editable);
+		// Needs further checks
+		metadataPanel.setPresenter(presenter);
+		for (ActionListener al : save.getActionListeners())
+			save.removeActionListener(al);
+		save.addActionListener(presenter.getCenterPresenter().saveBookDetailPageChanges(book));
 	}
 }

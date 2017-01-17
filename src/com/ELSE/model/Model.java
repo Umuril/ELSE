@@ -71,20 +71,8 @@ public class Model {
 		new Thread(r).start();
 	}
 
-	public Pathbase getPathbase() {
-		return pathbase;
-	}
-
-	public void setPathbase(Pathbase pathbase) {
-		this.pathbase = pathbase;
-	}
-
-	public MetadataLibrary getLibrary() {
-		return library;
-	}
-
-	public void setLibrary(MetadataLibrary library) {
-		this.library = library;
+	public boolean acceptableFileType(String path) {
+		return path.endsWith(".pdf") || path.endsWith(".html") || path.endsWith(".epub");
 	}
 
 	public void createPathbaseFile() {
@@ -98,8 +86,12 @@ public class Model {
 		}
 	}
 
-	public boolean acceptableFileType(String path) {
-		return path.endsWith(".pdf") || path.endsWith(".html") || path.endsWith(".epub");
+	public MetadataLibrary getLibrary() {
+		return library;
+	}
+
+	public Pathbase getPathbase() {
+		return pathbase;
 	}
 
 	public void loadPathbaseFile(String filename) {
@@ -117,5 +109,13 @@ public class Model {
 			}
 		} catch (IOException e) {
 		}
+	}
+
+	public void setLibrary(MetadataLibrary library) {
+		this.library = library;
+	}
+
+	public void setPathbase(Pathbase pathbase) {
+		this.pathbase = pathbase;
 	}
 }

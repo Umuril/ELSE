@@ -21,6 +21,32 @@ import org.apache.pdfbox.rendering.PDFRenderer;
 
 public class PDFReader implements EbookReader {
 	private File file;
+	private JLabel label;
+	private int page, totpages;
+	private JFrame frame;
+	private JButton back, forward;
+	private String path;
+
+	public PDFReader(String path) {
+		this.path = path;
+		this.file = new File(path);
+	}
+
+	private void aggiorna() {
+		PDDocument doc = null;
+		try {
+			doc = PDDocument.load(file);
+			PDFRenderer renderer = new PDFRenderer(doc);
+			BufferedImage image;
+			image = renderer.renderImage(page);
+			label.setIcon(new ImageIcon(image));
+			// ImageIO.write(image, "PNG", new File("custom-render.png"));
+			doc.close();
+		} catch (IOException e) {
+			// TODO Auto-generated catch block
+			e.printStackTrace();
+		}
+	}
 
 	@Override
 	public BufferedImage getCover() {
@@ -38,13 +64,8 @@ public class PDFReader implements EbookReader {
 		return null;
 	}
 
-	private JLabel label;
-	private int page, totpages;
-	private JFrame frame;
-	private JButton back, forward;
-	private String path;
-
-	@Override public void getFrame() {
+	@Override
+	public void getFrame() {
 		frame = new JFrame("Viewer");
 		frame.setBounds(100, 100, 800, 500);
 		frame.getContentPane().setLayout(new BorderLayout());
@@ -99,26 +120,5 @@ public class PDFReader implements EbookReader {
 		frame.getContentPane().add(lower, BorderLayout.SOUTH);
 		frame.setDefaultCloseOperation(WindowConstants.DISPOSE_ON_CLOSE);
 		frame.setVisible(true);
-	}
-
-	public PDFReader(String path) {
-		this.path = path;
-		this.file = new File(path);
-	}
-
-	private void aggiorna() {
-		PDDocument doc = null;
-		try {
-			doc = PDDocument.load(file);
-			PDFRenderer renderer = new PDFRenderer(doc);
-			BufferedImage image;
-			image = renderer.renderImage(page);
-			label.setIcon(new ImageIcon(image));
-			// ImageIO.write(image, "PNG", new File("custom-render.png"));
-			doc.close();
-		} catch (IOException e) {
-			// TODO Auto-generated catch block
-			e.printStackTrace();
-		}
 	}
 }

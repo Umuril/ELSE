@@ -38,77 +38,25 @@ public class CenterPresenter {
 		fileSearcher.start();
 	}
 
-	public ActionListener clickOnABook(BufferedImage image, BookMetadata book) {
-		return new ListenerBookClick(view, image, book);
-	}
-
-	public ActionListener backFromBookDetail() {
-		return new ListenerBackButton(this, view);
-	}
-
-	public ActionListener setBookDetailPageEditable() {
-		return new ListenerEditButton(view);
-	}
-
-	public ActionListener saveBookDetailPageChanges(BookMetadata book) {
-		return new ListenerSaveButton(view, model, book);
-	}
-
-	public MouseListener openBook(BookMetadata book) {
-		for (Entry<String, BookMetadata> entry : model.getLibrary().getDatabase().entrySet()) {
-			if (entry.getValue().equals(book))
-				return new ListenerBookPreviewClick(Paths.get(entry.getKey()), presenter);
+	public void addImage(BookMetadata book) throws IOException {
+		String filename = System.getProperty("user.home") + File.separator + ".else" + File.separator + book.getChecksum() + ".jpg";
+		File imageFile = new File(filename);
+		BufferedImage image = null;
+		if (imageFile.exists())
+			image = ImageIO.read(imageFile);
+		else
+			System.err.println("Error 404");
+		Image img = image.getScaledInstance(-1, 180, Image.SCALE_DEFAULT);
+		JButton picLabel = new JButton(new ImageIcon(img));
+		if (book != null) {
+			System.out.println("The book is not null (already present)");
+			System.out.println(book);
 		}
-		return null;
-	}
-
-	public void change(Image image, BookMetadata book) {
-		view.change(image, book);
-	}
-
-	public void loadFromFile(String filename) {
-		try (BufferedReader reader = new BufferedReader(new InputStreamReader(new FileInputStream(new File("db.txt")), Charset.defaultCharset()))) {
-			String line;
-			while ((line = reader.readLine()) != null) {
-				Path path = Paths.get(line).toRealPath();
-				model.getPathbase().add(path.toString());
-			}
-		} catch (IOException e) {
-		}
-	}
-
-	public void aggiorna(int page) {
-		view.getUpSlider().removeAll();
-		if (page < 0)
-			page = fileSearcher.getPage();
-		fileSearcher = new FileSearcher(view, this, model.getPathbase(), page);
-		fileSearcher.start();
-		// Needed on delete
-		view.getUpSlider().revalidate();
-		view.getUpSlider().repaint();
-	}
-
-	public void loadNextBooks() {
-		view.getUpSlider().removeAll();
-		fileSearcher.findNext();
-		view.enableBackButton(true);
-		// Needed on delete
-		view.getUpSlider().revalidate();
-		view.getUpSlider().repaint();
-	}
-
-	public void loadPreviousBooks() {
-		int page = fileSearcher.getPage();
-		System.out.println("Reloading books to page: " + page);
-		if (page > 0) {
-			view.getUpSlider().removeAll();
-			fileSearcher = new FileSearcher(view, this, model.getPathbase(), page - 1);
-			fileSearcher.start();
-			view.enableBackButton(page != 1);
-			// Needed on delete
-			view.getUpSlider().revalidate();
-			view.getUpSlider().repaint();
-		}
+		picLabel.addActionListener(new ListenerBookClick(view, image, book));
+		picLabel.setBorder(null);
+		view.getUpSlider().add(picLabel);
+		picLabel.revalidate();
+		picLabel.repaint();
 	}
 
 	void addImage(File file) throws IOException {
@@ -151,6 +99,113 @@ public class CenterPresenter {
 		picLabel.repaint();
 	}
 
+	public void aggiorna(int page) {
+		view.getUpSlider().removeAll();
+		if (page < 0)
+			page = fileSearcher.getPage();
+		fileSearcher = new FileSearcher(view, this, model.getPathbase(), page);
+		fileSearcher.start();
+		// Needed on delete
+		view.getUpSlider().revalidate();
+		view.getUpSlider().repaint();
+	}
+
+	public ActionListener backBooks() {
+		return new ListenerPreviousBooks(this);
+	}
+
+	public ActionListener backFromBookDetail() {
+		return new ListenerBackButton(this, view);
+	}
+
+	public void change(Image image, BookMetadata book) {
+		view.change(image, book);
+	}
+
+	public ActionListener clickOnABook(BufferedImage image, BookMetadata book) {
+		return new ListenerBookClick(view, image, book);
+	}
+
+	public ActionListener customOpenBook(BookMetadata book) {
+		for (Entry<String, BookMetadata> entry : model.getLibrary().getDatabase().entrySet()) {
+			if (entry.getValue().equals(book))
+				return new ListenerCustomBookPreviewClick(Paths.get(entry.getKey()), presenter);
+		}
+		return null;
+	}
+
+	public ActionListener defaultOpenBook(BookMetadata book) {
+		for (Entry<String, BookMetadata> entry : model.getLibrary().getDatabase().entrySet()) {
+			if (entry.getValue().equals(book))
+				return new ListenerBookPreviewClick(Paths.get(entry.getKey()), presenter);
+		}
+		return null;
+	}
+
+	public void emptyOfBooks() {
+		view.getUpSlider().removeAll();
+		view.getUpSlider().revalidate();
+		view.getUpSlider().repaint();
+	}
+
+	public ActionListener forwardBooks() {
+		return new ListenerForwardBooks(this);
+	}
+
+	public ActionListener gridView() {
+		return new ListenerGridView(this);
+	}
+
+	public ActionListener listView() {
+		return new ListenerListView(this);
+	}
+
+	public void loadFromFile(String filename) {
+		try (BufferedReader reader = new BufferedReader(new InputStreamReader(new FileInputStream(new File("db.txt")), Charset.defaultCharset()))) {
+			String line;
+			while ((line = reader.readLine()) != null) {
+				Path path = Paths.get(line).toRealPath();
+				model.getPathbase().add(path.toString());
+			}
+		} catch (IOException e) {
+		}
+	}
+
+	public void loadNextBooks() {
+		view.getUpSlider().removeAll();
+		fileSearcher.findNext();
+		view.enableBackButton(true);
+		// Needed on delete
+		view.getUpSlider().revalidate();
+		view.getUpSlider().repaint();
+	}
+
+	public void loadPreviousBooks() {
+		int page = fileSearcher.getPage();
+		System.out.println("Reloading books to page: " + page);
+		if (page > 0) {
+			view.getUpSlider().removeAll();
+			fileSearcher = new FileSearcher(view, this, model.getPathbase(), page - 1);
+			fileSearcher.start();
+			view.enableBackButton(page != 1);
+			// Needed on delete
+			view.getUpSlider().revalidate();
+			view.getUpSlider().repaint();
+		}
+	}
+
+	public MouseListener openBook(BookMetadata book) {
+		for (Entry<String, BookMetadata> entry : model.getLibrary().getDatabase().entrySet()) {
+			if (entry.getValue().equals(book))
+				return new ListenerBookPreviewClick(Paths.get(entry.getKey()), presenter);
+		}
+		return null;
+	}
+
+	public ActionListener saveBookDetailPageChanges(BookMetadata book) {
+		return new ListenerSaveButton(view, model, book);
+	}
+
 	private BufferedImage saveImage(Path file) throws IOException {
 		view.setStatusText("Creating image of " + file.toFile());
 		String s = System.getProperty("user.home") + File.separator + ".else" + File.separator + MD5Checksum.getMD5Checksum(file.toString()) + ".jpg";
@@ -174,62 +229,7 @@ public class CenterPresenter {
 		return image;
 	}
 
-	public void addImage(BookMetadata book) throws IOException {
-		String filename = System.getProperty("user.home") + File.separator + ".else" + File.separator + book.getChecksum() + ".jpg";
-		File imageFile = new File(filename);
-		BufferedImage image = null;
-		if (imageFile.exists())
-			image = ImageIO.read(imageFile);
-		else
-			System.err.println("Error 404");
-		Image img = image.getScaledInstance(-1, 180, Image.SCALE_DEFAULT);
-		JButton picLabel = new JButton(new ImageIcon(img));
-		if (book != null) {
-			System.out.println("The book is not null (already present)");
-			System.out.println(book);
-		}
-		picLabel.addActionListener(new ListenerBookClick(view, image, book));
-		picLabel.setBorder(null);
-		view.getUpSlider().add(picLabel);
-		picLabel.revalidate();
-		picLabel.repaint();
-	}
-
-	public void emptyOfBooks() {
-		view.getUpSlider().removeAll();
-		view.getUpSlider().revalidate();
-		view.getUpSlider().repaint();
-	}
-
-	public ActionListener backBooks() {
-		return new ListenerPreviousBooks(this);
-	}
-
-	public ActionListener forwardBooks() {
-		return new ListenerForwardBooks(this);
-	}
-
-	public ActionListener gridView() {
-		return new ListenerGridView(this);
-	}
-
-	public ActionListener listView() {
-		return new ListenerListView(this);
-	}
-
-	public ActionListener customOpenBook(BookMetadata book) {
-		for (Entry<String, BookMetadata> entry : model.getLibrary().getDatabase().entrySet()) {
-			if (entry.getValue().equals(book))
-				return new ListenerCustomBookPreviewClick(Paths.get(entry.getKey()), presenter);
-		}
-		return null;
-	}
-
-	public ActionListener defaultOpenBook(BookMetadata book) {
-		for (Entry<String, BookMetadata> entry : model.getLibrary().getDatabase().entrySet()) {
-			if (entry.getValue().equals(book))
-				return new ListenerBookPreviewClick(Paths.get(entry.getKey()), presenter);
-		}
-		return null;
+	public ActionListener setBookDetailPageEditable() {
+		return new ListenerEditButton(view);
 	}
 }

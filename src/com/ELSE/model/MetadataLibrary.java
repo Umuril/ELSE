@@ -41,46 +41,12 @@ public class MetadataLibrary implements Printable {
 		}
 	}
 
-	// Need to check this one in the future
-	private void readFromFile() {
-		try (ObjectInputStream oos = new ObjectInputStream(new FileInputStream(filename))) {
-			database = new HashMap<String, BookMetadata>();
-			Object obj = null;
-			try {
-				while ((obj = oos.readObject()) != null)
-					if (obj instanceof HashMap<?, ?>) {
-						for (Entry<?, ?> entry : ((HashMap<?, ?>) obj).entrySet()) {
-							if (entry.getKey() instanceof String && entry.getValue() instanceof BookMetadata) {
-								database.put((String) entry.getKey(), (BookMetadata) entry.getValue());
-							}
-						}
-					}
-			} catch (EOFException e) {
-			}
-		} catch (FileNotFoundException e) {
-			// TODO e.printStackTrace();
-			System.err.println("File " + filename + " not found.");
-		} catch (IOException e) {
-			e.printStackTrace();
-		} catch (ClassNotFoundException e) {
-			e.printStackTrace();
-		}
-	}
-
 	public HashMap<String, BookMetadata> getDatabase() {
 		return database;
 	}
 
-	public void setDatabase(HashMap<String, BookMetadata> database) {
-		this.database = database;
-	}
-
 	public String getFilename() {
 		return filename;
-	}
-
-	public void setFilename(String filename) {
-		this.filename = filename;
 	}
 
 	public void print() {
@@ -132,5 +98,39 @@ public class MetadataLibrary implements Printable {
 		// tell the caller that this page is part
 		// of the printed document
 		return PAGE_EXISTS;
+	}
+
+	// Need to check this one in the future
+	private void readFromFile() {
+		try (ObjectInputStream oos = new ObjectInputStream(new FileInputStream(filename))) {
+			database = new HashMap<String, BookMetadata>();
+			Object obj = null;
+			try {
+				while ((obj = oos.readObject()) != null)
+					if (obj instanceof HashMap<?, ?>) {
+						for (Entry<?, ?> entry : ((HashMap<?, ?>) obj).entrySet()) {
+							if (entry.getKey() instanceof String && entry.getValue() instanceof BookMetadata) {
+								database.put((String) entry.getKey(), (BookMetadata) entry.getValue());
+							}
+						}
+					}
+			} catch (EOFException e) {
+			}
+		} catch (FileNotFoundException e) {
+			// TODO e.printStackTrace();
+			System.err.println("File " + filename + " not found.");
+		} catch (IOException e) {
+			e.printStackTrace();
+		} catch (ClassNotFoundException e) {
+			e.printStackTrace();
+		}
+	}
+
+	public void setDatabase(HashMap<String, BookMetadata> database) {
+		this.database = database;
+	}
+
+	public void setFilename(String filename) {
+		this.filename = filename;
 	}
 }

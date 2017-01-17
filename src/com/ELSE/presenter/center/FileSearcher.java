@@ -37,6 +37,14 @@ public class FileSearcher extends Thread {
 		}
 	}
 
+	public int getFound() {
+		return found;
+	}
+
+	public int getPage() {
+		return page;
+	}
+
 	@Override
 	public void run() {
 		needToSkip = page * perPage;
@@ -79,15 +87,7 @@ public class FileSearcher extends Thread {
 		view.enableNextButton(false);
 	}
 
-	public int getFound() {
-		return found;
-	}
-
 	public void setFound(int found) {
 		this.found = found;
-	}
-
-	public int getPage() {
-		return page;
 	}
 }

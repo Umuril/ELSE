@@ -19,7 +19,9 @@ public class ListenerBookPreviewClick implements MouseListener, ActionListener {
 	}
 
 	@Override
-	public void mouseClicked(MouseEvent e) {
+	public void actionPerformed(ActionEvent e) {
+		// TODO Auto-generated method stub
+		// presenter.getReader(path);
 		try {
 			Desktop.getDesktop().open(new File(path.toString()));
 		} catch (IOException e1) { // TODO Auto-generated catch block
@@ -28,13 +30,12 @@ public class ListenerBookPreviewClick implements MouseListener, ActionListener {
 	}
 
 	@Override
-	public void mousePressed(MouseEvent e) {
-		// TODO Auto-generated method stub
-	}
-
-	@Override
-	public void mouseReleased(MouseEvent e) {
-		// TODO Auto-generated method stub
+	public void mouseClicked(MouseEvent e) {
+		try {
+			Desktop.getDesktop().open(new File(path.toString()));
+		} catch (IOException e1) { // TODO Auto-generated catch block
+			e1.printStackTrace();
+		}
 	}
 
 	@Override
@@ -48,13 +49,12 @@ public class ListenerBookPreviewClick implements MouseListener, ActionListener {
 	}
 
 	@Override
-	public void actionPerformed(ActionEvent e) {
+	public void mousePressed(MouseEvent e) {
 		// TODO Auto-generated method stub
-		// presenter.getReader(path);
-		try {
-			Desktop.getDesktop().open(new File(path.toString()));
-		} catch (IOException e1) { // TODO Auto-generated catch block
-			e1.printStackTrace();
-		}
+	}
+
+	@Override
+	public void mouseReleased(MouseEvent e) {
+		// TODO Auto-generated method stub
 	}
 }

@@ -11,6 +11,10 @@ import javax.swing.border.EmptyBorder;
 import javax.swing.border.LineBorder;
 
 class SearchBar {
+	static SearchBar newInstance() {
+		return new SearchBar();
+	}
+
 	private JPanel panel;
 	private JTextField testo;
 	private JButton icona;
@@ -27,8 +31,8 @@ class SearchBar {
 		panel.add(icona);
 	}
 
-	static SearchBar newInstance() {
-		return new SearchBar();
+	JButton getIcona() {
+		return icona;
 	}
 
 	JPanel getPanel() {
@@ -37,9 +41,5 @@ class SearchBar {
 
 	JTextField getTesto() {
 		return testo;
-	}
-
-	JButton getIcona() {
-		return icona;
 	}
 }

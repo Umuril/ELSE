@@ -9,6 +9,10 @@ import javax.swing.JLabel;
 import com.ELSE.presenter.Presenter;
 
 class StatusBar {
+	static StatusBar newInstance() {
+		return new StatusBar();
+	}
+
 	private Bar bar;
 	private JLabel statusText;
 	private JButton add, remove, update, save, load, print;
@@ -31,24 +35,12 @@ class StatusBar {
 		bar.getRight().add(print);
 	}
 
-	static StatusBar newInstance() {
-		return new StatusBar();
-	}
-
 	JButton getAddButton() {
 		return add;
 	}
 
-	JButton getRemoveButton() {
-		return remove;
-	}
-
-	JButton getUpdateButton() {
-		return update;
-	}
-
-	JButton getSaveButton() {
-		return save;
+	Bar getBar() {
+		return bar;
 	}
 
 	JButton getLoadButton() {
@@ -59,12 +51,16 @@ class StatusBar {
 		return print;
 	}
 
-	Bar getBar() {
-		return bar;
+	JButton getRemoveButton() {
+		return remove;
 	}
 
-	void setStatusText(String s) {
-		statusText.setText(s);
+	JButton getSaveButton() {
+		return save;
+	}
+
+	JButton getUpdateButton() {
+		return update;
 	}
 
 	public void needToSave(boolean need) {
@@ -78,5 +74,9 @@ class StatusBar {
 		save.addActionListener(presenter.getStatusBarPresenter().saveMainPageButton());
 		load.addActionListener(presenter.getStatusBarPresenter().loadMainPageButton());
 		print.addActionListener(presenter.getStatusBarPresenter().printMainPageButton());
+	}
+
+	void setStatusText(String s) {
+		statusText.setText(s);
 	}
 }

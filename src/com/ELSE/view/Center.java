@@ -8,6 +8,10 @@ import javax.swing.JPanel;
 import com.ELSE.model.BookMetadata;
 
 class Center {
+	static Center newInstance(Component parent) {
+		return new Center(parent);
+	}
+
 	private JPanel panel;
 	private SliderPage slider;
 	private BookDetailsPage bookDetails;
@@ -17,22 +21,6 @@ class Center {
 		bookDetails = BookDetailsPage.newInstance();
 		panel = JInvisiblePanel.newInstance(parent);
 		panel.add(slider.getContainerPanel());
-	}
-
-	static Center newInstance(Component parent) {
-		return new Center(parent);
-	}
-
-	JPanel getPanel() {
-		return panel;
-	}
-
-	SliderPage getSlider() {
-		return slider;
-	}
-
-	BookDetailsPage getBookDetails() {
-		return bookDetails;
 	}
 
 	void change(Image image, BookMetadata book) {
@@ -45,5 +33,17 @@ class Center {
 		}
 		panel.revalidate();
 		panel.repaint();
+	}
+
+	BookDetailsPage getBookDetails() {
+		return bookDetails;
+	}
+
+	JPanel getPanel() {
+		return panel;
+	}
+
+	SliderPage getSlider() {
+		return slider;
 	}
 }

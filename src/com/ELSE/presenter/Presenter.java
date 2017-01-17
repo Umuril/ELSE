@@ -23,16 +23,8 @@ public class Presenter {
 		statusBarPresenter = new StatusBarPresenter(view, model, this);
 	}
 
-	public MenuBarPresenter getMenuBarPresenter() {
-		return menuBarPresenter;
-	}
-
 	public CenterPresenter getCenterPresenter() {
 		return centerPresenter;
-	}
-
-	public StatusBarPresenter getStatusBarPresenter() {
-		return statusBarPresenter;
 	}
 
 	// This sucks !!!
@@ -47,6 +39,10 @@ public class Presenter {
 		return null;
 	}
 
+	public MenuBarPresenter getMenuBarPresenter() {
+		return menuBarPresenter;
+	}
+
 	// This sucks !!!
 	public void getReader(Path file) {
 		if (file.toString().endsWith(".pdf"))
@@ -55,5 +51,9 @@ public class Presenter {
 			new HTMLReader(file.toString()).getFrame();
 		if (file.toString().endsWith(".epub"))
 			new EPUBReader(file.toString()).getFrame();
+	}
+
+	public StatusBarPresenter getStatusBarPresenter() {
+		return statusBarPresenter;
 	}
 }

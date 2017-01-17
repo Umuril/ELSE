@@ -23,26 +23,6 @@ public class StatusBarPresenter {
 		return new AddMainPageButtonListener(view, model.getPathbase(), presenter.getCenterPresenter());
 	}
 
-	public ActionListener removeMainPageButton() {
-		return new RemoveMainPageButtonListener(view, model.getPathbase(), presenter.getCenterPresenter());
-	}
-
-	public ActionListener loadMainPageButton() {
-		return new LoadMainPageButtonListener(view, model, presenter.getCenterPresenter());
-	}
-
-	public ActionListener saveMainPageButton() {
-		return new SaveMainPageButtonListener(view, this);
-	}
-
-	public ActionListener updateMainPageButton() {
-		return new UpdateMainPageButtonListener(presenter.getCenterPresenter());
-	}
-
-	public ActionListener printMainPageButton() {
-		return new PrintMainPageButtonListener(model);
-	}
-
 	public void aggiungiFile() {
 		view.setStatusText("aggiungiFile");
 		JFileChooser jfc = new JFileChooser();
@@ -55,5 +35,25 @@ public class StatusBarPresenter {
 	public void createMetadataFile() {
 		model.getLibrary().createFile();
 		model.createPathbaseFile();
+	}
+
+	public ActionListener loadMainPageButton() {
+		return new LoadMainPageButtonListener(view, model, presenter.getCenterPresenter());
+	}
+
+	public ActionListener printMainPageButton() {
+		return new PrintMainPageButtonListener(model);
+	}
+
+	public ActionListener removeMainPageButton() {
+		return new RemoveMainPageButtonListener(view, model.getPathbase(), presenter.getCenterPresenter());
+	}
+
+	public ActionListener saveMainPageButton() {
+		return new SaveMainPageButtonListener(view, this);
+	}
+
+	public ActionListener updateMainPageButton() {
+		return new UpdateMainPageButtonListener(presenter.getCenterPresenter());
 	}
 }

@@ -7,6 +7,10 @@ import javax.swing.JPanel;
 import javax.swing.border.EmptyBorder;
 
 class Bar {
+	static Bar newInstance() {
+		return new Bar();
+	}
+
 	private JPanel barContainer, left, right;
 
 	private Bar() {
@@ -18,10 +22,6 @@ class Bar {
 		right = JInvisiblePanel.newInstance(barContainer);
 		barContainer.add(left, BorderLayout.WEST);
 		barContainer.add(right, BorderLayout.EAST);
-	}
-
-	static Bar newInstance() {
-		return new Bar();
 	}
 
 	JPanel getBarContainer() {

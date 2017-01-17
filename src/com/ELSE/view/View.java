@@ -46,6 +46,63 @@ public class View {
 		framePrincipale.setVisible(true);
 	}
 
+	public void change(Image image, BookMetadata book) {
+		center.change(image, book);
+	}
+
+	public void changeBookPageEditable() {
+		center.getBookDetails().setEditable(!center.getBookDetails().isEditable());
+		center.getBookDetails().update();
+	}
+
+	public void enableBackButton(boolean b) {
+		center.getSlider().enableBackButton(b);
+	}
+
+	public void enableNextButton(boolean b) {
+		center.getSlider().enableNextButton(b);
+	}
+
+	public String getBookDetailAnno() {
+		return center.getBookDetails().getMetadataPanel().getAnno().getText();
+	}
+
+	public String getBookDetailAutore() {
+		return center.getBookDetails().getMetadataPanel().getAutore().getText();
+	}
+
+	public String getBookDetailPagine() {
+		return center.getBookDetails().getMetadataPanel().getPagine().getText();
+	}
+
+	public String getBookDetailTitolo() {
+		return center.getBookDetails().getMetadataPanel().getTitolo().getText();
+	}
+
+	public JFrame getFrame() {
+		return framePrincipale;
+	}
+
+	public JPanel getStatusBar() {
+		return statusBar.getBar().getBarContainer();
+	}
+
+	/*************************************
+	 ********** API STARTS HERE **********
+	 *************************************/
+	public JPanel getUpSlider() {
+		return center.getSlider().getUp();
+	}
+
+	public void needToSave(boolean need) {
+		statusBar.needToSave(need);
+	}
+
+	public void setBookPageEditable(boolean b) {
+		center.getBookDetails().setEditable(b);
+		center.getBookDetails().update();
+	}
+
 	public void setPresenter(Presenter presenter) {
 		menuBar.setPresenter(presenter);
 		center.getBookDetails().setPresenter(presenter);
@@ -56,64 +113,7 @@ public class View {
 		// presenter.getCenterPresenter().aggiorna();
 	}
 
-	/*************************************
-	 ********** API STARTS HERE **********
-	 *************************************/
-	public JPanel getUpSlider() {
-		return center.getSlider().getUp();
-	}
-
-	public JPanel getStatusBar() {
-		return statusBar.getBar().getBarContainer();
-	}
-
-	public JFrame getFrame() {
-		return framePrincipale;
-	}
-
-	public void change(Image image, BookMetadata book) {
-		center.change(image, book);
-	}
-
 	public void setStatusText(String s) {
 		statusBar.setStatusText(s);
-	}
-
-	public void setBookPageEditable(boolean b) {
-		center.getBookDetails().setEditable(b);
-		center.getBookDetails().update();
-	}
-
-	public void changeBookPageEditable() {
-		center.getBookDetails().setEditable(!center.getBookDetails().isEditable());
-		center.getBookDetails().update();
-	}
-
-	public String getBookDetailTitolo() {
-		return center.getBookDetails().getMetadataPanel().getTitolo().getText();
-	}
-
-	public String getBookDetailAutore() {
-		return center.getBookDetails().getMetadataPanel().getAutore().getText();
-	}
-
-	public void needToSave(boolean need) {
-		statusBar.needToSave(need);
-	}
-
-	public String getBookDetailAnno() {
-		return center.getBookDetails().getMetadataPanel().getAnno().getText();
-	}
-
-	public String getBookDetailPagine() {
-		return center.getBookDetails().getMetadataPanel().getPagine().getText();
-	}
-
-	public void enableBackButton(boolean b) {
-		center.getSlider().enableBackButton(b);
-	}
-
-	public void enableNextButton(boolean b) {
-		center.getSlider().enableNextButton(b);
 	}
 }

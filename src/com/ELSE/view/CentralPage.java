@@ -10,10 +10,6 @@ import javax.swing.border.EmptyBorder;
 import javax.swing.border.LineBorder;
 
 class CentralPage {
-	private CentralPage() {
-		throw new AssertionError();
-	}
-
 	static JPanel newInstance(CentralProperties components) {
 		JPanel container = new JPanel();
 		container.setBackground(Color.white);
@@ -26,5 +22,9 @@ class CentralPage {
 		JPanel down = components.initDown(container);
 		container.add(down);
 		return container;
+	}
+
+	private CentralPage() {
+		throw new AssertionError();
 	}
 }

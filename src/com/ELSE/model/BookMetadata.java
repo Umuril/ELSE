@@ -13,44 +13,44 @@ public class BookMetadata implements Serializable {
 	// private transient String percorso; // Do I really need it here?
 	private int npagine;
 
-	public String getChecksum() {
-		return checksum;
-	}
-
-	public void setChecksum(String string) {
-		this.checksum = string;
-	}
-
-	public String getTitolo() {
-		return titolo;
-	}
-
-	public void setTitolo(String titolo) {
-		this.titolo = titolo;
+	public Year getAnno() {
+		return anno;
 	}
 
 	public String getAutore() {
 		return autore;
 	}
 
-	public void setAutore(String autore) {
-		this.autore = autore;
-	}
-
-	public Year getAnno() {
-		return anno;
-	}
-
-	public void setAnno(Year anno) {
-		this.anno = anno;
+	public String getChecksum() {
+		return checksum;
 	}
 
 	public int getNpagine() {
 		return npagine;
 	}
 
+	public String getTitolo() {
+		return titolo;
+	}
+
+	public void setAnno(Year anno) {
+		this.anno = anno;
+	}
+
+	public void setAutore(String autore) {
+		this.autore = autore;
+	}
+
+	public void setChecksum(String string) {
+		this.checksum = string;
+	}
+
 	public void setNpagine(int npagine) {
 		this.npagine = npagine;
+	}
+
+	public void setTitolo(String titolo) {
+		this.titolo = titolo;
 	}
 
 	@Override

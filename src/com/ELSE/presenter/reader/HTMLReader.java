@@ -16,14 +16,19 @@ import javax.swing.text.Document;
 import javax.swing.text.html.HTMLEditorKit;
 
 public class HTMLReader implements EbookReader {
+	private String path;
+
+	public HTMLReader(String path) {
+		this.path = path;
+	}
+
 	@Override
 	public BufferedImage getCover() {
 		return new BufferedImage(256, 256, BufferedImage.TYPE_INT_RGB);
 	}
 
-	private String path;
-
-	@Override public void getFrame() {
+	@Override
+	public void getFrame() {
 		JFrame frame = new JFrame("Viewer");
 		frame.setBounds(100, 100, 800, 500);
 		frame.getContentPane().setLayout(new BorderLayout());
@@ -53,9 +58,5 @@ public class HTMLReader implements EbookReader {
 		frame.getContentPane().add(scrollPane);
 		frame.setDefaultCloseOperation(WindowConstants.DISPOSE_ON_CLOSE);
 		frame.setVisible(true);
-	}
-
-	public HTMLReader(String path) {
-		this.path = path;
 	}
 }

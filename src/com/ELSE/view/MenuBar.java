@@ -5,6 +5,10 @@ import javax.swing.JButton;
 import com.ELSE.presenter.Presenter;
 
 class MenuBar {
+	static MenuBar newInstance() {
+		return new MenuBar();
+	}
+
 	private Bar parent;
 	private JButton settings;
 	private SearchBar searchBar;
@@ -20,24 +24,20 @@ class MenuBar {
 		parent.getRight().add(advSearch);
 	}
 
-	static MenuBar newInstance() {
-		return new MenuBar();
+	JButton getAdvSearch() {
+		return advSearch;
 	}
 
 	Bar getParent() {
 		return parent;
 	}
 
-	JButton getSettings() {
-		return settings;
-	}
-
 	SearchBar getSearchBar() {
 		return searchBar;
 	}
 
-	JButton getAdvSearch() {
-		return advSearch;
+	JButton getSettings() {
+		return settings;
 	}
 
 	void setPresenter(Presenter presenter) {
