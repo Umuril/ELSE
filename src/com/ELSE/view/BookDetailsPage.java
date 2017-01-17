@@ -17,14 +17,14 @@ class BookDetailsPage implements CentralProperties {
 		return new BookDetailsPage();
 	}
 
-	private JPanel parent;
-	private JPanel up, down;
-	private MetadataPanel metadataPanel;
-	private boolean editable;
 	private JButton back, edit, save;
-	private Image image;
 	private BookMetadata book;
+	private boolean editable;
+	private Image image;
+	private MetadataPanel metadataPanel;
+	private JPanel parent;
 	private Presenter presenter;
+	private JPanel up, down;
 
 	private BookDetailsPage() {
 		parent = CentralPage.newInstance(this);

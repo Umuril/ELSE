@@ -6,8 +6,8 @@ import java.awt.event.ActionListener;
 import com.ELSE.view.View;
 
 public class SaveMainPageButtonListener implements ActionListener {
-	private View view;
 	private StatusBarPresenter statusBarPresenter;
+	private View view;
 
 	public SaveMainPageButtonListener(View view, StatusBarPresenter statusBarPresenter) {
 		this.view = view;

@@ -12,9 +12,9 @@ class Center {
 		return new Center(parent);
 	}
 
+	private BookDetailsPage bookDetails;
 	private JPanel panel;
 	private SliderPage slider;
-	private BookDetailsPage bookDetails;
 
 	private Center(Component parent) {
 		slider = SliderPage.newInstance();

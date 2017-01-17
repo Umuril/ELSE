@@ -15,9 +15,9 @@ class SearchBar {
 		return new SearchBar();
 	}
 
+	private JButton icona;
 	private JPanel panel;
 	private JTextField testo;
-	private JButton icona;
 
 	private SearchBar() {
 		panel = new JPanel();

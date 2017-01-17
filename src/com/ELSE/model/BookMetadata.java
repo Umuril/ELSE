@@ -5,13 +5,13 @@ import java.time.Year;
 
 public class BookMetadata implements Serializable {
 	private static final long serialVersionUID = 1L;
-	private String checksum;
-	private String titolo;
-	private String autore;
 	private Year anno;
+	private String autore;
+	private String checksum;
 	// Warning: The field is transient but isn't set by deserialization
 	// private transient String percorso; // Do I really need it here?
 	private int npagine;
+	private String titolo;
 
 	public Year getAnno() {
 		return anno;

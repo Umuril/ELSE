@@ -16,9 +16,9 @@ import com.ELSE.presenter.Presenter;
  * @author Eduard Rubio Cholbi
  */
 public class View {
+	private Center center;
 	private JFrame framePrincipale;
 	private MenuBar menuBar;
-	private Center center;
 	private StatusBar statusBar;
 
 	public View() {

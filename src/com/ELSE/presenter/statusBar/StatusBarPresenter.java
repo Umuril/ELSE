@@ -9,9 +9,9 @@ import com.ELSE.presenter.Presenter;
 import com.ELSE.view.View;
 
 public class StatusBarPresenter {
-	private View view;
 	private Model model;
 	private Presenter presenter;
+	private View view;
 
 	public StatusBarPresenter(View view, Model model, Presenter presenter) {
 		this.view = view;

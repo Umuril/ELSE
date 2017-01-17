@@ -14,11 +14,11 @@ import com.ELSE.view.View;
 
 public class FileSearcher extends Thread {
 	private static final int perPage = 14;
-	private Object lock = new Object();
-	private Pathbase pathbase;
 	private CenterPresenter centerPresenter;
 	private int found, page;
+	private Object lock = new Object();
 	private int needToSkip;
+	private Pathbase pathbase;
 	private View view;
 
 	public FileSearcher(View view, CenterPresenter centerPresenter, Pathbase pathbase, int page) {

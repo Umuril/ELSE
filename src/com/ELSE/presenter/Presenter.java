@@ -13,8 +13,8 @@ import com.ELSE.presenter.statusBar.StatusBarPresenter;
 import com.ELSE.view.View;
 
 public class Presenter {
-	private MenuBarPresenter menuBarPresenter;
 	private CenterPresenter centerPresenter;
+	private MenuBarPresenter menuBarPresenter;
 	private StatusBarPresenter statusBarPresenter;
 
 	public Presenter(View view, Model model) {

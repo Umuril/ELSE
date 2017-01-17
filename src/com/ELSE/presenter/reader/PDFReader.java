@@ -20,11 +20,11 @@ import org.apache.pdfbox.pdmodel.PDDocument;
 import org.apache.pdfbox.rendering.PDFRenderer;
 
 public class PDFReader implements EbookReader {
+	private JButton back, forward;
 	private File file;
+	private JFrame frame;
 	private JLabel label;
 	private int page, totpages;
-	private JFrame frame;
-	private JButton back, forward;
 	private String path;
 
 	public PDFReader(String path) {

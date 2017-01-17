@@ -10,9 +10,9 @@ import com.ELSE.presenter.center.CenterPresenter;
 import com.ELSE.view.View;
 
 public class RemoveMainPageButtonListener implements ActionListener {
-	private View view;
-	private Pathbase pathbase;
 	private CenterPresenter centerPresenter;
+	private Pathbase pathbase;
+	private View view;
 
 	public RemoveMainPageButtonListener(View view, Pathbase pathbase, CenterPresenter centerPresenter) {
 		this.view = view;

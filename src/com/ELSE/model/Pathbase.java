@@ -9,8 +9,8 @@ import java.util.Map;
 
 public class Pathbase {
 	private static class PathNode {
-		private final String name;
 		private Map<String, PathNode> children = new HashMap<>();
+		private final String name;
 
 		private PathNode(String name) {
 			this.name = name;

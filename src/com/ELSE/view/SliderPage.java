@@ -15,10 +15,10 @@ class SliderPage implements CentralProperties {
 		return new SliderPage();
 	}
 
+	private JButton back, grid, list, forward;
+	private JPanel down;
 	private JPanel parent;
 	private JPanel up;
-	private JPanel down;
-	private JButton back, grid, list, forward;
 
 	private SliderPage() {
 		parent = CentralPage.newInstance(this);

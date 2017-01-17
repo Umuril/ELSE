@@ -25,10 +25,10 @@ import com.ELSE.presenter.Presenter;
 import com.ELSE.view.View;
 
 public class CenterPresenter {
-	private View view;
+	private FileSearcher fileSearcher;
 	private Model model;
 	private Presenter presenter;
-	private FileSearcher fileSearcher;
+	private View view;
 
 	public CenterPresenter(View view, Model model, Presenter presenter) {
 		this.view = view;

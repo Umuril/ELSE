@@ -13,9 +13,9 @@ class StatusBar {
 		return new StatusBar();
 	}
 
+	private JButton add, remove, update, save, load, print;
 	private Bar bar;
 	private JLabel statusText;
-	private JButton add, remove, update, save, load, print;
 
 	private StatusBar() {
 		bar = Bar.newInstance();

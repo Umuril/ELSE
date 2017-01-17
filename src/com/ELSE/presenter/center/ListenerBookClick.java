@@ -8,9 +8,9 @@ import com.ELSE.model.BookMetadata;
 import com.ELSE.view.View;
 
 public class ListenerBookClick implements ActionListener {
-	private View view;
-	private BufferedImage image;
 	private BookMetadata book;
+	private BufferedImage image;
+	private View view;
 
 	public ListenerBookClick(View view, BufferedImage image, BookMetadata book) {
 		this.view = view;

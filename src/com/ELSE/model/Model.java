@@ -18,9 +18,9 @@ import java.nio.file.attribute.BasicFileAttributes;
 import java.util.prefs.Preferences;
 
 public class Model {
-	private Preferences prefs;
 	private MetadataLibrary library;
 	private Pathbase pathbase;
+	private Preferences prefs;
 
 	public Model() {
 		prefs = Preferences.userRoot().node(this.getClass().getName());

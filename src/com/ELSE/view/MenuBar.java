@@ -9,10 +9,10 @@ class MenuBar {
 		return new MenuBar();
 	}
 
-	private Bar parent;
-	private JButton settings;
-	private SearchBar searchBar;
 	private JButton advSearch;
+	private Bar parent;
+	private SearchBar searchBar;
+	private JButton settings;
 
 	private MenuBar() {
 		parent = Bar.newInstance();

@@ -21,11 +21,11 @@ class MetadataPanel {
 		return new MetadataPanel(parent);
 	}
 
-	private JPanel parent;
-	private JLabel bookPreview;
-	private JTextField titolo, autore, anno, pagine;
-	private JButton openDefault, openCustom;
 	private BookMetadata book;
+	private JLabel bookPreview;
+	private JButton openDefault, openCustom;
+	private JPanel parent;
+	private JTextField titolo, autore, anno, pagine;
 
 	private MetadataPanel(JPanel parent) {
 		this.parent = parent;

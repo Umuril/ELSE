@@ -11,9 +11,9 @@ import com.ELSE.model.Model;
 import com.ELSE.view.View;
 
 public class ListenerSaveButton implements ActionListener {
-	private View view;
-	private Model model;
 	private BookMetadata book;
+	private Model model;
+	private View view;
 
 	public ListenerSaveButton(View view, Model model, BookMetadata book) {
 		this.view = view;

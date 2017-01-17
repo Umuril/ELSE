@@ -20,10 +20,10 @@ import com.ELSE.presenter.center.CenterPresenter;
 import com.ELSE.view.View;
 
 public class AdvanceSearchListener implements ActionListener {
-	private JTextField titolo, autore, anno, pagine;
 	private CenterPresenter centerPresenter;
-	private Model model;
 	private JDialog dialog;
+	private Model model;
+	private JTextField titolo, autore, anno, pagine;
 	private View view;
 
 	public AdvanceSearchListener(CenterPresenter centerPresenter, Model model, View view) {
