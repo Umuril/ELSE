@@ -23,7 +23,7 @@ public class HTMLReader implements EbookReader {
 
 	private String path;
 
-	public void getFrame() {
+	@Override public void getFrame() {
 		JFrame frame = new JFrame("Viewer");
 		frame.setBounds(100, 100, 800, 500);
 		frame.getContentPane().setLayout(new BorderLayout());

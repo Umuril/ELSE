@@ -28,6 +28,6 @@ public class MenuBarPresenter {
 	}
 
 	public ActionListener advSearch() {
-		return new AdvanceSearchListener(presenter.getCenterPresenter(), model,view);
+		return new AdvanceSearchListener(presenter.getCenterPresenter(), model, view);
 	}
 }

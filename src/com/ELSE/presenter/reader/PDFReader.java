@@ -44,7 +44,7 @@ public class PDFReader implements EbookReader {
 	private JButton back, forward;
 	private String path;
 
-	public void getFrame() {
+	@Override public void getFrame() {
 		frame = new JFrame("Viewer");
 		frame.setBounds(100, 100, 800, 500);
 		frame.getContentPane().setLayout(new BorderLayout());
